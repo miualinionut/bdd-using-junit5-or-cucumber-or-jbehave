@@ -1,19 +1,21 @@
-package com.luxoft.javabdd.bank;
+package com.luxoft.javabdd.bank.junit;
 
+import com.luxoft.javabdd.bank.CreditOffer;
+import com.luxoft.javabdd.bank.Customer;
+import com.luxoft.javabdd.bank.EconomyCreditOfficer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-public class BusinessCreditOfficerTest {
+public class EconomyCreditOfficerTest {
 
     CreditOffer sut;
 
     @BeforeEach
     void setup() {
-        sut = new BusinessCreditOfficer("2", "Business");
+        sut = new EconomyCreditOfficer("1", "Economy");
     }
 
     @Test
@@ -21,9 +23,10 @@ public class BusinessCreditOfficerTest {
         Customer mike = new Customer("Mike", false);
         boolean resultOfAddOperation = sut.addCustomer(mike);
 
-        assertAll("customer should not be added",
-                () -> assertEquals(false, resultOfAddOperation),
-                () -> assertEquals(0, sut.getCustomersList().size())
+        assertAll("customer was not added successfully",
+                () -> assertEquals(true, resultOfAddOperation),
+                () -> assertEquals(1, sut.getCustomersList().size()),
+                () -> assertEquals(mike, sut.getCustomersList().get(0))
         );
     }
 
@@ -47,9 +50,21 @@ public class BusinessCreditOfficerTest {
         boolean resultOfRemoveOperation = sut.removeCustomer(john);
 
         assertAll("customer should be removed",
-                () -> assertEquals(false, resultOfRemoveOperation, "customer removed by business credit officer"),
+                () -> assertEquals(false, resultOfRemoveOperation, "vip customer removed by economy credit officer"),
                 () -> assertEquals(1, sut.getCustomersList().size())
         );
     }
 
+    @Test
+    void shouldRemoveRegularCustomers() {
+        Customer mike = new Customer("Mike", false);
+        sut.addCustomer(mike);
+
+        boolean resultOfRemoveOperation = sut.removeCustomer(mike);
+
+        assertAll("customer should be removed",
+                () -> assertEquals(true, resultOfRemoveOperation, "regular customer not removed by economy credit officer"),
+                () -> assertEquals(0, sut.getCustomersList().size())
+        );
+    }
 }

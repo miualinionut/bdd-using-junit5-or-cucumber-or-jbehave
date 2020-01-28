@@ -1,5 +1,9 @@
-package com.luxoft.javabdd.bank;
+package com.luxoft.javabdd.bank.bdd.junit;
 
+import com.luxoft.javabdd.bank.BusinessCreditOfficer;
+import com.luxoft.javabdd.bank.CreditOffer;
+import com.luxoft.javabdd.bank.Customer;
+import com.luxoft.javabdd.bank.EconomyCreditOfficer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
