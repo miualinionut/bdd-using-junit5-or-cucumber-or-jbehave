@@ -15,11 +15,6 @@ public class BusinessCreditOfficerTest {
 
     }
 
-    @When("^have a VIP customer$")
-    public void vipCustomer() {
-
-    }
-
     @Then("^can add him but cannot remove him from a business credit offer$")
     public void addButNotRemove() {
 
