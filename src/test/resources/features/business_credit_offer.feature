@@ -10,3 +10,8 @@ Feature: Business credit offers
     Given there is a business credit offer
     When we have a VIP customer
     Then can add him but cannot remove him from a business credit offer
+
+  Scenario: Adding customers more then once for business credit offers
+    Given there is a business credit offer
+    When we have a VIP customer
+    Then cannot add him more than once

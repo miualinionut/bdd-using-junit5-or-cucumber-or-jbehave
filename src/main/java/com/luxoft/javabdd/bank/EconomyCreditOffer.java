@@ -8,7 +8,7 @@ public class EconomyCreditOffer extends CreditOffer {
 
     @Override
     public boolean addCustomer(Customer customer) {
-        return customersList.add(customer);
+        return addToCustomersList(customer);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class EconomyCreditOffer extends CreditOffer {
         if (customer.isVip()) {
             return false;
         } else {
-            return customersList.remove(customer);
+            return removeFromCustomersList(customer);
         }
     }
 }

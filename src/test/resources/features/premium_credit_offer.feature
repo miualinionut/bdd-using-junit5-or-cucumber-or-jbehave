@@ -10,3 +10,8 @@ Feature: Premium credit offers
     Given there is a premium credit offer
     When we have a VIP customer
     Then can add him and remove him from an premium credit offer
+
+  Scenario: Adding customers more then once for premium credit offers
+    Given there is a premium credit offer
+    When we have a VIP customer
+    Then cannot add him more than once

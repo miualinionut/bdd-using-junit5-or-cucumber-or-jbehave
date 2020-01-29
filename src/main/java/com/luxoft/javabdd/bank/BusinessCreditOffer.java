@@ -9,7 +9,7 @@ public class BusinessCreditOffer extends CreditOffer {
     @Override
     public boolean addCustomer(Customer customer) {
         if (customer.isVip()) {
-            return customersList.add(customer);
+            return addToCustomersList(customer);
         }
         return false;
     }

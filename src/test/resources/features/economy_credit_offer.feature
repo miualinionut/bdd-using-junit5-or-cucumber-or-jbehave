@@ -10,3 +10,8 @@ Feature: Economy credit offers
     Given there is a economy credit offer
     When we have a VIP customer
     Then can add him but cannot remove him from an economy credit offer
+
+  Scenario: Adding customers more then once for economy credit offers
+    Given there is a economy credit offer
+    When we have a VIP customer
+    Then cannot add him more than once

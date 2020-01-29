@@ -6,25 +6,29 @@ import java.util.List;
 
 public abstract class CreditOffer {
 
-	protected String id;
-	protected List<Customer> customersList = new ArrayList<Customer>();
-	protected String creditOfferType;
+	private String id;
+	private List<Customer> customersList = new ArrayList<Customer>();
+	private String creditOfferType;
 
 	public CreditOffer(String id, String creditOfferType) {
 		this.id = id;
 		this.creditOfferType = creditOfferType;
 	}
 
-	public String getId() {
-		return id;
-	}
-
 	public List<Customer> getCustomersList() {
 		return Collections.unmodifiableList(customersList);
 	}
 
-	public String getCreditOfferType() {
-		return creditOfferType;
+	protected boolean addToCustomersList(Customer customer) {
+		if(this.customersList.contains(customer)) {
+			return false;
+		} else {
+			return this.customersList.add(customer);
+		}
+	}
+
+	protected boolean removeFromCustomersList(Customer customer) {
+		return this.customersList.remove(customer);
 	}
 
 	public abstract boolean addCustomer(Customer customer);

@@ -111,4 +111,16 @@ public class CreditOfferSteps {
                 () -> assertEquals(0, sut.getCustomersList().size())
         );
     }
+
+    @Then("^cannot add him more than once$")
+    public void cannotAddHimMoreThanOnce() {
+        boolean resultOfAddOperation01 = sut.addCustomer(customer);
+        boolean resultOfAddOperation02 = sut.addCustomer(customer);
+
+        assertAll("customer was not added successfully",
+                () -> assertEquals(true, resultOfAddOperation01, "first add should complete successfully"),
+                () -> assertEquals(false, resultOfAddOperation02, "second add should fail"),
+                () -> assertEquals(1, sut.getCustomersList().size())
+        );
+    }
 }
