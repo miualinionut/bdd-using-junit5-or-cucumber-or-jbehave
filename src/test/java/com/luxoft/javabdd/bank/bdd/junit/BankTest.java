@@ -1,9 +1,9 @@
 package com.luxoft.javabdd.bank.bdd.junit;
 
-import com.luxoft.javabdd.bank.BusinessCreditOfficer;
+import com.luxoft.javabdd.bank.BusinessCreditOffer;
 import com.luxoft.javabdd.bank.CreditOffer;
 import com.luxoft.javabdd.bank.Customer;
-import com.luxoft.javabdd.bank.EconomyCreditOfficer;
+import com.luxoft.javabdd.bank.EconomyCreditOffer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -16,11 +16,11 @@ public class BankTest {
 
     @Nested
     @DisplayName("Given there is a business credit offer")
-    class BusinessCreditOfficerTest {
+    class BusinessCreditOfferTest {
         CreditOffer sut;
         @BeforeEach
         void setup() {
-            sut = new BusinessCreditOfficer("2", "Business");
+            sut = new BusinessCreditOffer("2", "Business");
         }
 
         @Nested
@@ -64,12 +64,12 @@ public class BankTest {
 
     @Nested
     @DisplayName("Given there is a economy credit offer")
-    class EconomyCreditOfficerTest {
+    class EconomyCreditOfferTest {
 
         CreditOffer sut;
         @BeforeEach
         void setup() {
-            sut = new EconomyCreditOfficer("1", "Economy");
+            sut = new EconomyCreditOffer("1", "Economy");
         }
 
         @Nested

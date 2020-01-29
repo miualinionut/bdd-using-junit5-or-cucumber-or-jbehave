@@ -2,20 +2,20 @@ package com.luxoft.javabdd.bank.junit;
 
 import com.luxoft.javabdd.bank.CreditOffer;
 import com.luxoft.javabdd.bank.Customer;
-import com.luxoft.javabdd.bank.EconomyCreditOfficer;
+import com.luxoft.javabdd.bank.EconomyCreditOffer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EconomyCreditOfficerTest {
+public class EconomyCreditOfferTest {
 
     CreditOffer sut;
 
     @BeforeEach
     void setup() {
-        sut = new EconomyCreditOfficer("1", "Economy");
+        sut = new EconomyCreditOffer("1", "Economy");
     }
 
     @Test

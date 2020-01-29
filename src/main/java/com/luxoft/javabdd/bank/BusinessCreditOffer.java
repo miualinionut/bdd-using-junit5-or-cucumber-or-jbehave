@@ -1,8 +1,8 @@
 package com.luxoft.javabdd.bank;
 
-public class BusinessCreditOfficer extends CreditOffer {
+public class BusinessCreditOffer extends CreditOffer {
 
-    public BusinessCreditOfficer(String id, String creditOfferType) {
+    public BusinessCreditOffer(String id, String creditOfferType) {
         super(id, creditOfferType);
     }
 

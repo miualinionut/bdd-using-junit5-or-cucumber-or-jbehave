@@ -1,6 +1,6 @@
 package com.luxoft.javabdd.bank.junit;
 
-import com.luxoft.javabdd.bank.BusinessCreditOfficer;
+import com.luxoft.javabdd.bank.BusinessCreditOffer;
 import com.luxoft.javabdd.bank.CreditOffer;
 import com.luxoft.javabdd.bank.Customer;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class BusinessCreditOfficerTest {
+public class BusinessCreditOfferTest {
 
     CreditOffer sut;
 
     @BeforeEach
     void setup() {
-        sut = new BusinessCreditOfficer("2", "Business");
+        sut = new BusinessCreditOffer("2", "Business");
     }
 
     @Test

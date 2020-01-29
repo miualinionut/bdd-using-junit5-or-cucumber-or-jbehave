@@ -3,8 +3,8 @@ package com.luxoft.javabdd.bank;
 public class Bank {
 
     public static void main(String[] args) {
-        CreditOffer economyCreditOffer = new EconomyCreditOfficer("1", "Economy");
-        CreditOffer businessCreditOffer = new BusinessCreditOfficer("2", "Business");
+        CreditOffer economyCreditOffer = new EconomyCreditOffer("1", "Economy");
+        CreditOffer businessCreditOffer = new BusinessCreditOffer("2", "Business");
 
         Customer john = new Customer("John", true);
         Customer mike = new Customer("Mike", false);
