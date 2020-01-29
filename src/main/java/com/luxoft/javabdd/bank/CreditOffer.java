@@ -23,13 +23,16 @@ public abstract class CreditOffer {
         if (this.customersList.contains(customer)) {
             return false;
         } else {
-            System.out.println(customer.getName() + " added");
+            customer.increaseCreditAmount(getCreditOfferAmount());
             return this.customersList.add(customer);
         }
     }
 
+    protected int getCreditOfferAmount() {
+    	return 100;
+	}
+
     protected boolean removeFromCustomersList(Customer customer) {
-		System.out.println(customer.getName() + " removed");
         return this.customersList.remove(customer);
     }
 

@@ -5,27 +5,26 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CreditOfferSteps {
 
-    CreditOffer sut;
+    CreditOffer creditOffer;
     Customer customer;
 
     @Given("^there is a business credit offer$")
     public void businessCreditOffer() {
-        this.sut = new BusinessCreditOffer("2", "Business");
+        this.creditOffer = new BusinessCreditOffer("2", "Business");
     }
 
     @Given("^there is a economy credit offer$")
     public void creditOffer() {
-        this.sut = new EconomyCreditOffer("1", "Economy");
+        this.creditOffer = new EconomyCreditOffer("1", "Economy");
     }
 
     @Given("^there is a premium credit offer$")
     public void premiumOffer() {
-        this.sut = new PremiumCreditOffer("3", "Premium");
+        this.creditOffer = new PremiumCreditOffer("3", "Premium");
     }
 
     @When("^we have a usual customer$")
@@ -38,89 +37,105 @@ public class CreditOfferSteps {
         this.customer = new Customer("John", true);
     }
 
+    @When("^you add customer to credit offer$")
+    public void addCustomerToCreditOffer() {
+        this.creditOffer.addCustomer(customer);
+    }
+
     @Then("^can add him but cannot remove him from a business credit offer$")
     public void addButNotRemove() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(true, resultOfAddOperation, "vip customer not sucessfully added by business credit officer"),
                 () -> assertEquals(false, resultOfRemoveOperation, "customer removed by business credit officer"),
-                () -> assertEquals(1, sut.getCustomersList().size()),
-                () -> assertEquals(customer, sut.getCustomersList().get(0))
+                () -> assertEquals(1, creditOffer.getCustomersList().size()),
+                () -> assertEquals(customer, creditOffer.getCustomersList().get(0))
         );
     }
 
     @Then("^you cannot add or remove him from a business credit offer$")
     public void cannotAddOrRemove() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer should not be added",
                 () -> assertEquals(false, resultOfAddOperation),
                 () -> assertEquals(false, resultOfRemoveOperation),
-                () -> assertEquals(0, sut.getCustomersList().size())
+                () -> assertEquals(0, creditOffer.getCustomersList().size())
         );
     }
 
     @Then("^you can add and remove him from an economy credit offer$")
     public void addAndRemoveCustomers() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(true, resultOfAddOperation),
                 () -> assertEquals(true, resultOfRemoveOperation),
-                () -> assertEquals(0, sut.getCustomersList().size())
+                () -> assertEquals(0, creditOffer.getCustomersList().size())
         );
     }
 
     @Then("^can add him but cannot remove him from an economy credit offer$")
     public void addButNotRemoveCustomers() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(true, resultOfAddOperation),
                 () -> assertEquals(false, resultOfRemoveOperation, "vip customer removed by economy credit offer"),
-                () -> assertEquals(1, sut.getCustomersList().size()),
-                () -> assertEquals(customer, sut.getCustomersList().get(0))
+                () -> assertEquals(1, creditOffer.getCustomersList().size()),
+                () -> assertEquals(customer, creditOffer.getCustomersList().get(0))
         );
     }
 
     @Then("^you cannot add or remove him from an premium credit offer$")
     public void cannotAddOrRemoveFromPremium() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(false, resultOfAddOperation, "add failed"),
                 () -> assertEquals(false, resultOfRemoveOperation, "remove failed"),
-                () -> assertEquals(0, sut.getCustomersList().size())
+                () -> assertEquals(0, creditOffer.getCustomersList().size())
         );
     }
 
     @Then("^can add him and remove him from an premium credit offer$")
     public void canAddAndRemoveFromPremium() {
-        boolean resultOfAddOperation = sut.addCustomer(customer);
-        boolean resultOfRemoveOperation = sut.removeCustomer(customer);
+        boolean resultOfAddOperation = creditOffer.addCustomer(customer);
+        boolean resultOfRemoveOperation = creditOffer.removeCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(true, resultOfAddOperation),
                 () -> assertEquals(true, resultOfRemoveOperation),
-                () -> assertEquals(0, sut.getCustomersList().size())
+                () -> assertEquals(0, creditOffer.getCustomersList().size())
         );
     }
 
     @Then("^cannot add him more than once$")
     public void cannotAddHimMoreThanOnce() {
-        boolean resultOfAddOperation01 = sut.addCustomer(customer);
-        boolean resultOfAddOperation02 = sut.addCustomer(customer);
+        boolean resultOfAddOperation01 = creditOffer.addCustomer(customer);
+        boolean resultOfAddOperation02 = creditOffer.addCustomer(customer);
 
         assertAll("customer was not added successfully",
                 () -> assertEquals(true, resultOfAddOperation01, "first add should complete successfully"),
                 () -> assertEquals(false, resultOfAddOperation02, "second add should fail"),
-                () -> assertEquals(1, sut.getCustomersList().size())
+                () -> assertEquals(1, creditOffer.getCustomersList().size())
         );
+    }
+
+    @Then("^bonus points should be (\\d+)$")
+    public void calculateBonusPoints(int expectedBonusPoints) {
+        int customerBonusPoints = this.customer.calculateBonusPoints();
+        assertEquals(expectedBonusPoints, customerBonusPoints, "bonus points not correct");
+    }
+
+    @Then("^customer should be available in credit offer customerList$")
+    public void customerShouldBeAvailableInCreditOfferCustomerList() {
+        assertTrue(this.creditOffer.getCustomersList().contains(this.customer));
     }
 }
