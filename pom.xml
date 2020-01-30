@@ -30,7 +30,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -50,7 +49,48 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-jbehave-site-resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.jbehave.site</groupId>
+									<artifactId>jbehave-site-resources</artifactId>
+									<version>3.3</version>
+									<type>zip</type>
+									<outputDirectory>${project.build.directory}/jbehave/view</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					<execution>
+						<id>unpack-jbehave-reports-resources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.jbehave</groupId>
+									<artifactId>jbehave-core</artifactId>
+									<version>4.1</version>
+									<outputDirectory>${project.build.directory}/jbehave/view</outputDirectory>
+									<includes>**</includes>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -92,12 +132,7 @@
 			<artifactId>jbehave-core</artifactId>
 			<version>4.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jbehave.site</groupId>
-			<artifactId>jbehave-site</artifactId>
-			<version>3.3.1</version>
-			<type>pom</type>
-		</dependency>
+
 	</dependencies>
 
 </project>
