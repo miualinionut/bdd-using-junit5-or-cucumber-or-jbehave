@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         snippets = SnippetType.CAMELCASE,
-        features = "classpath:features"
+        features = "classpath:cucumber/features"
 )
 public class RunCucumberTest {
 }

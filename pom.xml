@@ -111,6 +111,12 @@
 			<version>1.2.5</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jbehave</groupId>
+			<artifactId>jbehave-core</artifactId>
+			<version>4.1</version>
+		</dependency>
 	</dependencies>
 
 </project>
