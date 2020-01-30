@@ -34,13 +34,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
-				<configuration>
-					<excludes>
-						<!-- Exclude class from test coverage -->
-						<exclude>**/*Bank.*</exclude>
-					</excludes>
-				</configuration>
+				<version>0.8.5</version>
 				<executions>
 					<execution>
 						<goals>
@@ -49,33 +43,14 @@
 					</execution>
 					<execution>
 						<id>report</id>
-						<phase>test</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>jacoco-check</id>
-						<phase>test</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<rule>
-									<element>PACKAGE</element>
-									<limits>
-										<limit>
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
@@ -116,6 +91,12 @@
 			<groupId>org.jbehave</groupId>
 			<artifactId>jbehave-core</artifactId>
 			<version>4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jbehave.site</groupId>
+			<artifactId>jbehave-site</artifactId>
+			<version>3.3.1</version>
+			<type>pom</type>
 		</dependency>
 	</dependencies>
 
